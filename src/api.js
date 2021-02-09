@@ -4,8 +4,7 @@ const serverless = require("serverless-http");
 const yahooFinance = require("yahoo-finance");
 
 var allowedOrigins = ['http://localhost:3000',
-                      'http://howisgmedoing.com',
-                      'https://howisgmedoing.com'];
+                      'https://www.howisgmedoing.com/'];
 
 const app = express();
 app.use(cors({
