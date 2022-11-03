@@ -1,5 +1,5 @@
 const express = require("express");
-const cors = require('cors');
+const cors = require("cors");
 const serverless = require("serverless-http");
 const yahooFinance = require("yahoo-finance");
 
@@ -9,14 +9,18 @@ app.use(cors());
 const router = express.Router();
 
 router.get("/", (req, res) => {
-  yahooFinance.quote({
-    symbol: 'GME',
-    modules: [ 'price' ]
-  }, (_err, quotes) => {
-    res.json({
-      quotes
-    });
-  })
+  const symbol = req.query.symbol || "GME";
+  yahooFinance.quote(
+    {
+      symbol: symbol,
+      modules: ["price"],
+    },
+    (_err, quotes) => {
+      res.json({
+        quotes,
+      });
+    }
+  );
 });
 
 app.use(`/.netlify/functions/api`, router);
